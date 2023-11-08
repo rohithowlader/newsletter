@@ -38,7 +38,7 @@ const transporter = nodemailer.createTransport({
 cron.schedule("* * * * *", async () => {
   const emails = await recipient.find();
   const emailAddresses = emails.map((emailobj) => emailobj.email);
-  console.log(emailAddresses);
+  //console.log(emailAddresses);
   const mailConfigurations = {
     from: `verifymail422@gmail.com`,
     to: emailAddresses,
@@ -47,6 +47,6 @@ cron.schedule("* * * * *", async () => {
   };
   transporter.sendMail(mailConfigurations, function (error, info) {
     if (error) throw Error(error);
-    console.log("Email Sent Successfully");
+    //console.log("Email Sent Successfully");
   });
 });
