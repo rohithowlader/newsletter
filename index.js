@@ -4,6 +4,7 @@ import createEmail from "./routes/createEmail.js";
 import deleteEmail from "./routes/deleteEmail.js";
 import nodemailer from "nodemailer";
 import recipient from "./models/recipient.js";
+import cron from "node-cron";
 connectDB();
 //Encoding
 const app = express();
@@ -33,16 +34,19 @@ const transporter = nodemailer.createTransport({
     // refreshToken: process.env.REFRESH_TOKEN
   },
 });
-const emails = await recipient.find();
-const emailAddresses = emails.map((emailobj) => emailobj.email);
-console.log(emailAddresses);
-const mailConfigurations = {
-  from: `verifymail422@gmail.com`,
-  to: emailAddresses,
-  subject: `File shared by `,
-  text: `Hi! you have subscribed to our newsletter`,
-};
-transporter.sendMail(mailConfigurations, function (error, info) {
-  if (error) throw Error(error);
-  console.log("Email Sent Successfully");
+
+cron.schedule("* * * * *", async () => {
+  const emails = await recipient.find();
+  const emailAddresses = emails.map((emailobj) => emailobj.email);
+  console.log(emailAddresses);
+  const mailConfigurations = {
+    from: `verifymail422@gmail.com`,
+    to: emailAddresses,
+    subject: `File shared by `,
+    text: `Hi! you have subscribed to our newsletter`,
+  };
+  transporter.sendMail(mailConfigurations, function (error, info) {
+    if (error) throw Error(error);
+    console.log("Email Sent Successfully");
+  });
 });
