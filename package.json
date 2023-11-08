@@ -1,0 +1,29 @@
+{
+  "name": "newsletter",
+  "version": "1.0.0",
+  "description": "Sends email using cron job",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rohithowlader/newsletter.git"
+  },
+  "author": "Rohit Howlader",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rohithowlader/newsletter/issues"
+  },
+  "homepage": "https://github.com/rohithowlader/newsletter#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
