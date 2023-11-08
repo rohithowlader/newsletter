@@ -1,5 +1,6 @@
 import express from "express";
-
+import connectDB from "./Config/DB.js";
+connectDB();
 //Encoding
 const app = express();
 app.use(express.urlencoded({ extended: false }));
