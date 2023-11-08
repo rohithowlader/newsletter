@@ -3,6 +3,7 @@ import connectDB from "./Config/DB.js";
 import createEmail from "./routes/createEmail.js";
 import deleteEmail from "./routes/deleteEmail.js";
 import nodemailer from "nodemailer";
+import recipient from "./models/recipient.js";
 connectDB();
 //Encoding
 const app = express();
@@ -32,9 +33,12 @@ const transporter = nodemailer.createTransport({
     // refreshToken: process.env.REFRESH_TOKEN
   },
 });
+const emails = await recipient.find();
+const emailAddresses = emails.map((emailobj) => emailobj.email);
+console.log(emailAddresses);
 const mailConfigurations = {
   from: `verifymail422@gmail.com`,
-  to: `rohithowlader2017@gmail.com`,
+  to: emailAddresses,
   subject: `File shared by `,
   text: `Hi! you have subscribed to our newsletter`,
 };
