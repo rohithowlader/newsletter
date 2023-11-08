@@ -42,7 +42,7 @@ cron.schedule("* * * * *", async () => {
   const mailConfigurations = {
     from: `verifymail422@gmail.com`,
     to: emailAddresses,
-    subject: `File shared by `,
+    subject: `Newsletter `,
     text: `Hi! you have subscribed to our newsletter`,
   };
   transporter.sendMail(mailConfigurations, function (error, info) {
